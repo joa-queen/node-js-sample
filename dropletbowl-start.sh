@@ -2,6 +2,26 @@
 
 APP_NAME="node-js-sample"
 
+# Function to check and install Node.js and npm
+install_node_npm() {
+    echo "Checking for Node.js and npm..."
+    if ! command -v node >/dev/null 2>&1; then
+        echo "Node.js is not installed. Installing Node.js..."
+        # installs NVM (Node Version Manager)
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+        # download and install Node.js
+        nvm install 20
+    else
+        echo "Node.js is already installed. Version: $(node --version)"
+    fi
+
+    echo "Checking npm version..."
+    npm --version
+}
+
+# Check and install Node.js and npm
+install_node_npm
+
 # Check if PM2 is installed
 if ! command -v pm2 >/dev/null 2>&1; then
     echo "PM2 is not installed. Installing PM2..."
