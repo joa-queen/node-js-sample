@@ -7,10 +7,8 @@ install_node_npm() {
     echo "Checking for Node.js and npm..."
     if ! command -v node >/dev/null 2>&1; then
         echo "Node.js is not installed. Installing Node.js..."
-        # installs NVM (Node Version Manager)
-        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-        # download and install Node.js
-        nvm install 20
+        curl -fsSL https://deb.nodesource.com/setup_21.x | sudo -E bash - &&\
+        sudo apt-get install -y nodejs
     else
         echo "Node.js is already installed. Version: $(node --version)"
     fi
