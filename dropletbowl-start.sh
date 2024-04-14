@@ -20,6 +20,11 @@ install_node_npm() {
 # Check and install Node.js and npm
 install_node_npm
 
+# NPM install and build
+cd /home/app
+npm install
+# npm run build
+
 # Check if PM2 is installed
 if ! command -v pm2 >/dev/null 2>&1; then
     echo "PM2 is not installed. Installing PM2..."
@@ -32,7 +37,7 @@ if pm2 list | grep -q $APP_NAME; then
     pm2 restart $APP_NAME
 else
     echo "Application $APP_NAME is not running. Starting..."
-    pm2 start /path/to/your/app.js --name $APP_NAME
+    pm2 start /home/app/index.js --name $APP_NAME
 fi
 
 pm2 save
